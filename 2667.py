@@ -37,8 +37,7 @@ def dfs(graph,i,j,visited=[]):
     return visited
 
 visited=[[False]*n for _ in range(n)]
-# for val in visited:
-#     print(val)
+
 a=[]
 cnt=0
 for i in range(n):

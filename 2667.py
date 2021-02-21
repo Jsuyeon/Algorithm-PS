@@ -10,45 +10,48 @@ for _ in range(n):
         temp.append(int(val))
     dangi.append(temp)
 
-for val in dangi:
-    print(val)
 
-def dfs(graph,i,j,visited=[]):
+
+def dfs(graph,i,j,visited):
+    global cnt
     if visited[i][j]==True:
-        return
-    visited=visited+[i,j]
+        return cnt
+    visited[i][j]=True
     graph[i][j]=0
+    cnt+=1
+
     if i+1<n:
-        print('아래')
         if visited[i+1][j]==False and graph[i+1][j]==1:
             dfs(graph,i+1,j,visited)
     if i-1>-1:
-        print('위')
         if visited[i-1][j]==False and graph[i-1][j]==1:
             dfs(graph,i-1,j,visited)
     if j+1<n:
-        print('오')
         if visited[i][j+1]==False and graph[i][j+1]==1:
             dfs(graph,i,j+1,visited)
     if j-1>-1:
-        print('왼')
         if visited[i][j-1]==False and graph[i][j-1]==1:
             dfs(graph,i,j-1,visited)
-    return visited
+    
+    return cnt
 
 visited=[[False]*n for _ in range(n)]
 
 a=[]
-cnt=0
+
 for i in range(n):
     for j in range(n):
         if dangi[i][j]==0:
             continue
-        ans=dfs(dangi,i,j,visited=[])
+        cnt=0
+        ans=dfs(dangi,i,j,visited)
         if ans==None:
             pass
         else:
             a.append(ans)
-print(a)
+print(len(a))
+a.sort()
+for i in a:
+    print(i)
 
 
